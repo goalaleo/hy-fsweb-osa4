@@ -30,8 +30,8 @@ module.exports = Blog
 app.use(cors())
 app.use(bodyParser.json())
 
-
 app.get('/api/blogs', (request, response) => {
+  console.log('blogs requested')
   Blog
     .find({})
     .then(blogs => {
@@ -41,6 +41,7 @@ app.get('/api/blogs', (request, response) => {
 
 app.post('/api/blogs', (request, response) => {
   const blog = new Blog(request.body)
+  console.log('adding new blog reference')
 
   blog
     .save()
