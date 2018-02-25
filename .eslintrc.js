@@ -34,5 +34,10 @@ module.exports = {
         "arrow-spacing": [
             "error", { "before": true, "after": true }
         ]
+    },
+    "globals": {
+      "test": true,
+      "expect": true,
+      "describe": true
     }
 };
