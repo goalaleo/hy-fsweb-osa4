@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const middleware = require('./utils/middleware')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -28,6 +29,7 @@ module.exports = Blog
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(middleware.logger)
 
 app.get('/api/blogs', (request, response) => {
   console.log('blogs requested')
@@ -48,6 +50,8 @@ app.post('/api/blogs', (request, response) => {
       response.status(201).json(result)
     })
 })
+
+app.use(middleware.error)
 
 const PORT = 3001
 app.listen(PORT, () => {
